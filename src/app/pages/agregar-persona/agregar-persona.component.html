@@ -76,8 +76,6 @@
 
     <div class="col-6">
     <label class="form-label">Persona Tipo:</label>
-    <!-- <input type="text" class="form-control" placeholder="Persona Tipo" formControlName="persona_tipo_id"> -->
-    <!-- <select class="form-control" formControlName="pais" (change)="actualizarPais($event.target.value)"> -->
     <select class="form-control" formControlName="persona_tipo_id" (change)="actualizarPersonaTipo($any($event.target).value)">
         <option value="">Seleccionar...</option>
         <option *ngFor="let persona_tipo of personas_tipo" value="{{persona_tipo.id}}">{{persona_tipo.valor}}</option>

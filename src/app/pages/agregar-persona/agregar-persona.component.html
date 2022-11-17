@@ -1,0 +1,99 @@
+<h3 class="text-center m-3">Agregar persona</h3>
+<form class="w-50 mx-auto border p-3 mt-3 mb-5" [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+    <label class="form-label">Nombre:</label>
+    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+    <div style="color:red;" *ngIf="enviado && myForm['nombre'].errors?.['required']">
+        El nombre es obligatorio
+    </div>
+
+    <div class="row mt-2">
+    <div class="col-6">
+    <label class="form-label">Apellido Paterno:</label>
+    <input type="text" class="form-control" placeholder="Apellido Paterno" formControlName="ape_pat">
+    <div style="color:red;" *ngIf="enviado && myForm['ape_pat'].errors?.['required']">
+        El apellido paterno es obligatorio
+    </div>
+</div>
+
+<div class="col-6">
+    <label class="form-label">Apellido Materno:</label>
+    <input type="text" class="form-control" placeholder="Apellido Materno" formControlName="ape_mat">
+    </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-6">
+    <label class="form-label">RFC:</label>
+    <input type="text" class="form-control" placeholder="RFC" formControlName="rfc">
+    <div style="color:red;" *ngIf="enviado && myForm['rfc'].errors?.['required']">
+        El RFC es obligatorio
+    </div>
+    </div>
+
+    <div class="col-6">
+    <label class="form-label">CURP:</label>
+    <input type="text" class="form-control" placeholder="CURP" formControlName="curp">
+    <div style="color:red;" *ngIf="enviado && myForm['curp'].errors?.['required']">
+        El CURP es obligatorio
+    </div>
+    </div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-6">
+    <label class="form-label">Fecha de Nacimiento:</label>
+    <input type="date" class="form-control" placeholder="Fecha de Nacimiento" formControlName="fec_nac">
+    <div style="color:red;" *ngIf="enviado && myForm['fec_nac'].errors?.['required']">
+        La fecha de nacimiento es obligatoria
+    </div>
+    </div>
+
+    <div class="col-6">
+    <label class="form-label">Estatus:</label>
+    <select class="form-control" formControlName="estatus_id" (change)="actualizarEstatus($any($event.target).value)">
+        <option value="">Seleccionar...</option>
+        <option *ngFor="let estatus of estatuses" value="{{estatus.id}}">{{estatus.valor}}</option>
+    </select>   
+    <div style="color:red;" *ngIf="enviado && myForm['estatus_id'].errors?.['required']">
+        Selecciona un estatus
+    </div>
+</div>
+</div>
+
+
+<div class="row mt-2">
+    <div class="col-6">
+    <label class="form-label">Sexo:</label>
+    <select class="form-control" formControlName="sexo_id" (change)="actualizarSexo($any($event.target).value)">
+        <option value="">Seleccionar...</option>
+        <option *ngFor="let sexo of sexos" value="{{sexo.id}}">{{sexo.valor}}</option>
+    </select>   
+    <div style="color:red;" *ngIf="enviado && myForm['sexo_id'].errors?.['required']">
+        Selecciona un tipo de sexo
+    </div>
+</div>
+
+    <div class="col-6">
+    <label class="form-label">Persona Tipo:</label>
+    <!-- <input type="text" class="form-control" placeholder="Persona Tipo" formControlName="persona_tipo_id"> -->
+    <!-- <select class="form-control" formControlName="pais" (change)="actualizarPais($event.target.value)"> -->
+    <select class="form-control" formControlName="persona_tipo_id" (change)="actualizarPersonaTipo($any($event.target).value)">
+        <option value="">Seleccionar...</option>
+        <option *ngFor="let persona_tipo of personas_tipo" value="{{persona_tipo.id}}">{{persona_tipo.valor}}</option>
+    </select>    
+    <div style="color:red;" *ngIf="enviado && myForm['persona_tipo_id'].errors?.['required']">
+        Selecciona un tipo de persona
+    </div>
+</div>
+</div>
+
+    <div class="mt-2">
+    <label class="form-label">Avatar:</label>
+    <input type="text" class="form-control" placeholder="Avatar" formControlName="avatar"> 
+    </div>
+
+    <div class="d-flex justify-content-center row mt-3 ms-2 me-2">
+        <button type="submit" class="btn btn-dark col-sm-4 mb-1" ><strong>Agregar</strong></button>
+    </div>
+</form>
